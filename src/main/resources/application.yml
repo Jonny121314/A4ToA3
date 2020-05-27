@@ -1,0 +1,73 @@
+server:
+  port: 8098
+
+spring:
+  #切面启用
+  aop:
+    proxy-target-class: true
+    auto: true
+  redis:
+    database: 12
+    host: 192.168.0.107
+    port: 6380
+    password: 
+    timeout: 86400s
+    jedis:
+      pool:
+        # 最大活跃连接数，负数为不限制
+        max-active: -1
+        # 等待可用连接的最大时间，负数为不限制
+        max-wait: -1s
+        # 最大空闲连接数
+        max-idle: 8
+        # 最小空闲连接数
+        min-idle: 0
+  messages:
+    basename: i18n/messages
+    
+  datasource: 
+    url: jdbc:mysql://192.168.0.107:3306/peiyoutk?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&useSSL=true&allowMultiQueries=true
+    username: HG
+    password: 123456
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+  # 文件上传大小设置
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:com/hongrant/www/achieve/mapper/*.xml
+  type-aliases-package: com.hongrant.www.achieve.pojo
+
+#pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+loseEfficacy:
+    login: 86400
+
+logging:
+  level: 
+    xatu.zsl: debug #不同目录下的日志可配置不同级别
