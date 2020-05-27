@@ -1,0 +1,15 @@
+.classpath
+.project
+.settings
+/target/
+/.svn/
+/.git/
+/.settings/
+/catalina.home_IS_UNDEFINED/
+/bin/
+/transaction-logs/
+.svn/*
+/src/test/
+/.idea/
+.factorypath
+
